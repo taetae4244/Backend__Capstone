@@ -1,10 +1,8 @@
+
 plugins {
     id 'com.android.application'
-    id 'org.jetbrains.kotlin.android' // ✅ 이거 꼭 추가!!
-    id 'com.google.gms.google-services' // ✅ 꼭 추가!
-
-
-
+    id 'org.jetbrains.kotlin.android'
+    id 'com.google.gms.google-services'
 }
 
 android {
@@ -27,17 +25,27 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_11
         targetCompatibility JavaVersion.VERSION_11
     }
+
     kotlinOptions {
         jvmTarget = '11'
     }
+
     buildFeatures {
         compose true
     }
+
+    // ✅ 요거 추가!
+    composeOptions {
+        kotlinCompilerExtensionVersion = "1.5.10"
+    }
 }
+
+
 
 dependencies {
 
@@ -49,6 +57,12 @@ dependencies {
     implementation libs.androidx.ui.graphics
     implementation libs.androidx.ui.tooling.preview
     implementation libs.androidx.material3
+    implementation 'com.google.firebase:firebase-database:20.3.0'  // 실시간 DB
+    implementation 'com.google.firebase:firebase-auth:22.3.1'
+    implementation 'androidx.appcompat:appcompat:1.6.1' // ✅ 꼭 추가
+    implementation 'com.google.android.gms:play-services-maps:18.1.0'
+
+
     testImplementation libs.junit
     androidTestImplementation libs.androidx.junit
     androidTestImplementation libs.androidx.espresso.core
@@ -56,10 +70,6 @@ dependencies {
     androidTestImplementation libs.androidx.ui.test.junit4
     debugImplementation libs.androidx.ui.tooling
     debugImplementation libs.androidx.ui.test.manifest
-    implementation 'com.google.firebase:firebase-database:20.3.0'  // 실시간 DB
-    implementation 'com.google.firebase:firebase-auth:22.3.1'
-    implementation 'net.daum.android:map-api:1.4.0'
-
 
 
 
